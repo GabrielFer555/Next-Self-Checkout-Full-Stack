@@ -11,7 +11,8 @@ interface WelcomeCardProps {
   imageUrl: string;
   alt: string;
   buttonText: string;
-  option?: ConsumptionMethod;
+  option: ConsumptionMethod;
+  slug: string;
 }
 
 const WelcomeCard = ({
@@ -19,6 +20,7 @@ const WelcomeCard = ({
   alt,
   buttonText,
   option,
+  slug,
 }: WelcomeCardProps) => {
   return (
     <Card>
@@ -26,7 +28,7 @@ const WelcomeCard = ({
         <div className="relative h-[80px] w-[80px]">
           <Image src={imageUrl} alt={alt} fill />
         </div>
-        <Link href={`/menu?consumptionMethod=${option}`}>
+        <Link href={`/${slug}/menu?consumptionMethod=${option}`}>
           <Button variant="secondary">{buttonText}</Button>
         </Link>
       </CardContent>
