@@ -28,9 +28,11 @@ const WelcomeCard = ({
         <div className="relative h-[80px] w-[80px]">
           <Image src={imageUrl} alt={alt} fill />
         </div>
-        <Link href={`/${slug}/menu?consumptionMethod=${option}`}>
-          <Button variant="secondary">{buttonText}</Button>
-        </Link>
+        <Button variant="secondary" asChild>
+          <Link href={`/${slug}/menu?consumptionMethod=${option}`}>
+            {buttonText}
+          </Link>
+        </Button>
       </CardContent>
     </Card>
   );
