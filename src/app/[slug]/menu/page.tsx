@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { getRestaurantBySlug } from "@/data/get-restaurant-by-slug";
+import { isConsumptionMethodValid } from "@/helper/validate-consumption-method";
 
 import MenuCover from "./components/menu-cover";
 import MenuHeader from "./components/menu-header";
@@ -9,11 +10,6 @@ interface RestaurantMenuPageProps {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ consumptionMethod: string }>;
 }
-
-const validConsumptionMethods = ["DINE_IN", "TAKEAWAY"];
-
-const isConsumptionMethodValid = (queryValue: string): boolean =>
-  validConsumptionMethods.includes(queryValue);
 
 const RestaurantMenuPage = async ({
   params,
@@ -31,7 +27,11 @@ const RestaurantMenuPage = async ({
   return (
     <div className="h-screen w-screen">
       <MenuCover restaurant={restaurant} />
-      <MenuHeader restaurant={restaurant} />
+      <MenuHeader
+        restaurant={restaurant}
+        slug={slug}
+        consumptionMethod={consumptionMethod}
+      />
     </div>
   );
 };

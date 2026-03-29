@@ -21,9 +21,15 @@ interface MenuHeaderProps {
       };
     };
   }>;
+  slug: string;
+  consumptionMethod: string;
 }
 
-const MenuHeader = ({ restaurant }: MenuHeaderProps) => {
+const MenuHeader = ({
+  restaurant,
+  slug,
+  consumptionMethod,
+}: MenuHeaderProps) => {
   const categories = restaurant.menuCategories;
   const [categorySelected, setCategorySelected] =
     useState<MenuCategoryWithProducts>(categories[0]);
@@ -74,7 +80,11 @@ const MenuHeader = ({ restaurant }: MenuHeaderProps) => {
       <h3 className="px-3 pt-2 text-lg font-semibold">
         {categorySelected.name}
       </h3>
-      <MenuProducts products={categorySelected.products} />
+      <MenuProducts
+        products={categorySelected.products}
+        slug={slug}
+        consumptionMethod={consumptionMethod}
+      />
     </div>
   );
 };

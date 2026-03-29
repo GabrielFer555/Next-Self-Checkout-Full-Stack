@@ -4,15 +4,21 @@ import Link from "next/link";
 
 interface MenuProductsProps {
   products: Product[];
+  slug: string;
+  consumptionMethod: string;
 }
 
-const MenuProducts = ({ products }: MenuProductsProps) => {
+const MenuProducts = ({
+  products,
+  slug,
+  consumptionMethod,
+}: MenuProductsProps) => {
   return (
     <div className="space-y-3 p-4">
       {products.map((product) => (
         <Link
           key={product.id}
-          href={""}
+          href={`/${slug}/menu/${product.id}?consumptionMethod=${consumptionMethod}`}
           className="flex items-center justify-between gap-10 border-b py-3"
         >
           <div className="flex flex-col">
