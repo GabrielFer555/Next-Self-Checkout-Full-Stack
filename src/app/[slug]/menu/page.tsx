@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getRestaurantBySlug } from "@/data/get-restaurant-by-slug";
 
 import MenuCover from "./components/menu-cover";
+import MenuHeader from "./components/menu-header";
 
 interface RestaurantMenuPageProps {
   params: Promise<{ slug: string }>;
@@ -30,6 +31,7 @@ const RestaurantMenuPage = async ({
   return (
     <div className="h-screen w-screen">
       <MenuCover restaurant={restaurant} />
+      <MenuHeader restaurant={restaurant} />
     </div>
   );
 };
