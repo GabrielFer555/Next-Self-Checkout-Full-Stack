@@ -1,7 +1,9 @@
+"use client";
+
 import { Product } from "@prisma/client";
 import { createContext, useState } from "react";
 
-interface CartProduct extends Pick<Product, "id" | "name" | "price" | "imageUrl"> {
+interface CartProduct extends Product {
   quantity: number;
 }
 
@@ -17,31 +19,34 @@ export const CartContext = createContext<ICartContext>({
   addToCart: () => {},
   toggleCart: () => {},
   products: [],
-})
+});
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
-    const [products, setProducts] = useState<CartProduct[]>([]);
-    const [isOpen, setIsOpen] = useState(false);
+  const [products, setProducts] = useState<CartProduct[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
 
-    const addToCart = (product: CartProduct) => {
-        const productAlreadyExists = products.find((p) => p.id === product.id);
-        if(productAlreadyExists) {
-            setProducts(products.map((p) => p.id === product.id ? { ...p, quantity: p.quantity + product.quantity } : p));
-        } else {
-            setProducts([...products, product]);
-        }
+  const addToCart = (product: CartProduct) => {
+    const productAlreadyExists = products.find((p) => p.id === product.id);
+    if (productAlreadyExists) {
+      setProducts(
+        products.map((p) =>
+          p.id === product.id
+            ? { ...p, quantity: p.quantity + product.quantity }
+            : p,
+        ),
+      );
+    } else {
+      setProducts([...products, product]);
     }
+  };
 
-    const toggleCart = () => {
-        setIsOpen(() => !isOpen);
-    }
+  const toggleCart = () => {
+    setIsOpen(() => !isOpen);
+  };
 
-    return (
-        <CartContext.Provider value={{ isOpen, addToCart, toggleCart, products }}>
-            {children}
-        </CartContext.Provider>
-
-    )
-
-
-}
+  return (
+    <CartContext.Provider value={{ isOpen, addToCart, toggleCart, products }}>
+      {children}
+    </CartContext.Provider>
+  );
+};

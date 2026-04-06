@@ -1,7 +1,12 @@
-
 import { useContext } from "react";
 
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 import { CartContext } from "../contexts/cart-context";
 
@@ -23,9 +28,8 @@ const CartSheet = () => {
           </h1>
         ))}
       </SheetContent>
-      
     </Sheet>
   );
 };
- 
+
 export default CartSheet;
