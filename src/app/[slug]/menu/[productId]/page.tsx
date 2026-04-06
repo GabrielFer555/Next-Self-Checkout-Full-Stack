@@ -4,6 +4,7 @@ import { getProductWithCategoriesById } from "@/data/get-product-by-id";
 import { isConsumptionMethodValid } from "@/helper/validate-consumption-method";
 
 import ProductCover from "./components/product-cover";
+import ProductDetails from "./components/product-details";
 
 interface ProductPageProps {
   params: Promise<{ slug: string; productId: string }>;
@@ -22,6 +23,7 @@ const ProductPage = async ({ params, searchParams }: ProductPageProps) => {
   return (
     <>
       <ProductCover product={product} />
+      <ProductDetails product={product} />
     </>
   );
 };

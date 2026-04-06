@@ -5,7 +5,7 @@ import { db as prisma } from "@/lib/prisma";
 export const getProductWithCategoriesById = async (
   id: string,
 ): Promise<Prisma.ProductGetPayload<{
-  include: { menuCategory: true };
+  include: { menuCategory: true; restaurant: true };
 }> | null> => {
   const product = await prisma.product.findUnique({
     where: {
@@ -13,6 +13,7 @@ export const getProductWithCategoriesById = async (
     },
     include: {
       menuCategory: true,
+      restaurant: true,
     },
   });
 

@@ -15,7 +15,7 @@ const ProductCover = ({ product }: ProductCoverProps) => {
   const handleBackClick = () => router.back();
 
   return (
-    <div className="relative h-[300px] min-w-full">
+    <div className="relative z-10 h-[300px] min-w-full">
       <MenuButton
         onAction={handleBackClick}
         style="absolute right-4 top-3 z-10 rounded-full"
