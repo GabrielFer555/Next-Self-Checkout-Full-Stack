@@ -4,7 +4,10 @@ import { Restaurant } from "@prisma/client";
 import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
+import { CartContext } from "../contexts/cart-context";
+import CartSheet from "./cart-sheet";
 import MenuButton from "./menu-button";
 
 interface MenuBannerProps {
@@ -13,6 +16,9 @@ interface MenuBannerProps {
 
 const MenuBanner = ({ restaurant }: MenuBannerProps) => {
   const router = useRouter();
+  const { toggleCart } = useContext(CartContext);
+
+  const handleCartClick = () => toggleCart();
 
   const handleBackClick = () => router.back();
 
@@ -20,14 +26,14 @@ const MenuBanner = ({ restaurant }: MenuBannerProps) => {
     <div>
       <div className="relative h-[250px] min-w-full">
         <MenuButton
-          onAction={handleBackClick}
-          style="absolute right-4 top-3 z-10 rounded-full"
+          onAction={handleCartClick}
+          style="absolute right-4 top-3 z-50 rounded-full"
         >
           <ScrollTextIcon />
         </MenuButton>
         <MenuButton
           onAction={handleBackClick}
-          style="absolute left-4 top-3 z-10 rounded-full"
+          style="absolute left-4 top-3 z-50 rounded-full"
         >
           <ChevronLeftIcon />
         </MenuButton>
@@ -38,6 +44,7 @@ const MenuBanner = ({ restaurant }: MenuBannerProps) => {
           fill
         />
       </div>
+      <CartSheet />
     </div>
   );
 };
